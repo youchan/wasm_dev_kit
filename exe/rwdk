@@ -2,13 +2,6 @@
 
 require 'wasm_dev_kit'
 
-command = ARGV.shift
-
-if command == 'new'
-  project_name = ARGV.shift
-  base_dir = File.expand_path(project_name, Dir.pwd)
-  runner = WasmDevKit::Runner.new(base_dir)
-  runner.create_project
-else
-  puts 'Usage: rwdk new [project name]'
-end
+# puts 'Usage: rwdk new [project name]'
+runner = WasmDevKit::Runner.new(ARGV)
+runner.execute
