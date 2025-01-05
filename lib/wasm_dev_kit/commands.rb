@@ -1,5 +1,6 @@
 require_relative 'commands/new'
 require_relative 'commands/build'
+require_relative 'commands/run'
 
 module WasmDevKit
   module Commands
@@ -9,6 +10,8 @@ module WasmDevKit
         return New
       when 'build'
         return Build
+      when 'run'
+        return Run
       end
     end
   end
