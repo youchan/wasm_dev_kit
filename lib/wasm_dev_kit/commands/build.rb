@@ -14,7 +14,7 @@ module WasmDevKit
       def cli_args
         [
           'pack',
-          './dist/ruby.wasm',
+          './dist/ruby+stdlib.wasm',
           '--dir', './src::/src',
           '--dir', './ruby-3.3-wasm32-unknown-wasip1-full/usr::/usr',
           '--dir', './src::/src',

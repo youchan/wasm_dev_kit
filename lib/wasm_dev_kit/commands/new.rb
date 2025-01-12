@@ -1,6 +1,7 @@
 require 'net_http_fetch'
 require 'uri'
 require 'pathname'
+require 'fileutils'
 require_relative '../../tgz_extractor'
 
 module WasmDevKit
@@ -36,15 +37,10 @@ module WasmDevKit
         tgz = TgzExtractor.new(PREBUILD_33_FULL_FILENAME)
         tgz.extract_to
 
-        Dir.mkdir('dist') unless File.exist?('dist')
+        dist = Pathname.new(File.expand_path('../../../template/dist', __dir__))
+        FileUtils.cp_r(dist, @base_dir)
+
         Dir.mkdir('src') unless File.exist?('src')
-
-        ruby_wasm = Pathname.new("#{PREBUILD_33_FULL_FILENAME.sub(/\.tar\.gz$/, '')}/usr/local/bin/ruby")
-        File.open('dist/ruby.wasm', 'wb') do |dist|
-          dist.write ruby_wasm.read
-        end
-
-        ruby_wasm.delete
       end
     end
   end
